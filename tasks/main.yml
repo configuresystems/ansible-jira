@@ -38,5 +38,14 @@
   get_url: url={{ mysqlConnectorUrl }}
            dest={{ jiraData }}/lib/{{ mysqlConnectorJar }}
   sudo: yes
-  notify: restart jira
+
+- name: stop jira
+  service: name=jira
+           status=stopped
+  sudo: yes
+
+- name: start jira
+  service: name=jira
+           status=started
+  sudo: yes
 

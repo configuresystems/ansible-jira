@@ -29,6 +29,6 @@ script:
   # Run the role/playbook with ansible-playbook.
   - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo -vvv
 
-  - sudo mysql jira -e 'show tables;' >&1
+  - sudo tail -200 /opt/atlassian/jira/logs/catalina.out
 
   - sudo netstat -plnt
