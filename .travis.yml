@@ -18,8 +18,7 @@ install:
   - printf '[defaults]\nroles_path = ../' > ansible.cfg
 
 before_script:
-  - mysql -e 'create database jira;'
-  - sudo mysql jira -e 'show tables;'
+  - sudo mysql -e 'create database jira; grant all privileges on jira.* to jira@% identified by "iAM4p45sW0rd!";'
  
 script:
   # Check the role/playbook's syntax.

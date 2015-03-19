@@ -9,7 +9,7 @@ jiraUrl: https://www.atlassian.com/software/jira/downloads/binary/{{ jiraExec }}
 mysqlHost: localhost
 mysqlPort: 3306
 mysqlDatabase: jira
-mysqlUser: travis
-mysqlPasswd: 
+mysqlUser: jira
+mysqlPasswd: iAM4p45sW0rd!
 mysqlConnectorJar: mysql-connector-java-5.1.34-bin.jar
 mysqlConnectorUrl: http://files.configure.systems/{{ mysqlConnectorJar }}
