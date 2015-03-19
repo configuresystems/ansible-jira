@@ -8,16 +8,18 @@ env:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y curl python-pip python-apt gcc
+  - sudo netstat -plnt
 
 install:
-  # Install Ansible.
-  - pip install ansible
+  # Install Ansible 1.8.4 per these tests.
+  - pip install ansible==1.8.4
 
   # Add ansible.cfg to pick up roles path.
   - printf '[defaults]\nroles_path = ../' > ansible.cfg
 
 before_script:
   - mysql -e 'create database jira;'
+  - sudo mysql jira -e 'show tables;'
  
 script:
   # Check the role/playbook's syntax.
@@ -27,6 +29,13 @@ script:
   # Run the role/playbook with ansible-playbook.
   - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo -vvv
 
-  - curl http://localhost:8080 >&1
+  - curl -q http://localhost:8080
 
-  - mysql jira -e 'show tables;' >&1
+  - curl -v http://localhost:8080
+
+  # Debugging
+
+  - sudo tail -200 /opt/atlassian/jira/logs/catalina.out
+
+  - sudo netstat -plnt
+
