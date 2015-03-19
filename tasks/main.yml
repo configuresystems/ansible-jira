@@ -35,7 +35,7 @@
   sudo: yes
 
 - name: Download MySQL Connector
-  get_url: url={{ mysqlConnectorJar }}
+  get_url: url={{ mysqlConnectorUrl }}
            dest={{ jiraData }}/lib/{{ mysqlConnectorJar }}
   sudo: yes
 
