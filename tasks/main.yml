@@ -5,7 +5,7 @@
            dest=/tmp
 
 - name: Set Perms on Jira File
-  file: path=/tmp/{{ JiraExec }}
+  file: path=/tmp/{{ jiraExec }}
         owner=root
         group=root
         mode=0777  
