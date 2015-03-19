@@ -34,3 +34,5 @@ script:
   - sudo netstat -plnt
 
   - sudo curl http://localhost:8080
+
+  - sudo ansible --version

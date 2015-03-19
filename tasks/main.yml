@@ -41,8 +41,6 @@
 
 - name: stop jira
   raw: /etc/init.d/jira stop
-  async: 120
-  poll: 5
   sudo: yes
 
 - name: simulate long running op (15 sec), wait for up to 45 sec, poll every 5 sec
