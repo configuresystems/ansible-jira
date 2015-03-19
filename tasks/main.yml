@@ -15,4 +15,4 @@
             dest=/tmp/response.varfile
 
 - name: Install Jira
-  raw: ./tmp/{{ jiraExec }} -q -varfile /tmp/response.varfile
+  raw: /tmp/{{ jiraExec }} -q -varfile /tmp/response.varfile
