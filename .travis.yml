@@ -8,7 +8,6 @@ env:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y curl python-pip python-apt gcc
-  - whoami
 
 install:
   # Install Ansible.
@@ -28,8 +27,6 @@ script:
   # Run the role/playbook with ansible-playbook.
   - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo -vvv
 
-  - ls -al /tmp
-
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
     ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo
@@ -37,6 +34,6 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  - service jira start
+  - sudo service jira start
 
   - curl http://localhost:8080
