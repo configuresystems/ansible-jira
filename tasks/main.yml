@@ -42,6 +42,8 @@
 - name: stop jira
   service: name=jira
            state=stopped
+  async: 120
+  poll: 5
   sudo: yes
 
 - name: simulate long running op (15 sec), wait for up to 45 sec, poll every 5 sec
