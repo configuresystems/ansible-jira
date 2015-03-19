@@ -28,7 +28,7 @@
 
 - name: Copy Jira dbconfig File
   template: src=dbconfig.xml.j2
-            dest={{ jiraHome }}
+            dest={{ jiraHome }}/dbconfig.xml
             owner=jira
             group=jira
             mode=0664
