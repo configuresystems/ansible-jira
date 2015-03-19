@@ -1,18 +1,44 @@
 ---
 
 - name: Download Jira
-  get_url: url={{ jiraDownload }}
+  get_url: url={{ jiraUrl }}
            dest=/tmp
+  sudo: yes
 
 - name: Set Perms on Jira File
   file: path=/tmp/{{ jiraExec }}
         owner=root
         group=root
         mode=0777  
+  sudo: yes
  
 - name: Copy Jira Template
   template: src=response.varfile.j2
             dest=/tmp/response.varfile
+  sudo: yes
 
 - name: Install Jira
   raw: /tmp/{{ jiraExec }} -q -varfile /tmp/response.varfile
+  sudo: yes
+
+- name: Copy Jira init.d File
+  template: src=jira.init.d.j2
+            dest=/etc/init.d/jira
+  sudo: yes
+
+- name: Copy Jira dbconfig File
+  template: src=dbconfig.xml.j2
+            dest={{ jiraHome }}
+            owner=jira
+            group=jira
+            mode=0664
+  sudo: yes
+
+- name: Download MySQL Connector
+  get_url: url={{ mysqlConnector }}
+           dest={{ jiraData }}/lib/{{ mysqlConnectorJar }}
+  sudo: yes
+
+- name: Restart Jira
+  service: name=jira state=retarted
+  sudo: yes

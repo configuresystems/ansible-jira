@@ -25,17 +25,8 @@ script:
   - ansible-playbook -i tests/inventory/test tests/$SITE --syntax-check
 
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo -vvv
+  - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo
 
-  # Run the role/playbook again, checking to make sure it's idempotent.
-  - >
-    ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
+  - curl http://localhost:8080 >&1
 
-  - ls -al /tmp
-
-  - sudo service jira start
-
-  - curl http://localhost:8080
+  - mysql jira -e 'show tables;' >&1
