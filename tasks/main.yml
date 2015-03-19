@@ -26,13 +26,16 @@
             dest=/etc/init.d/jira
   sudo: yes
 
-- name: Copy Jira dbconfig File
-  template: src=dbconfig.xml.j2
-            dest={{ jiraHome }}/dbconfig.xml
-            owner=jira
-            group=jira
-            mode=0664
-  sudo: yes
+#
+#  Doesn't appear to be working yet
+#
+#- name: Copy Jira dbconfig File
+#  template: src=dbconfig.xml.j2
+#            dest={{ jiraHome }}/dbconfig.xml
+#            owner=jira
+#            group=jira
+#            mode=0664
+#  sudo: yes
 
 - name: Download MySQL Connector
   get_url: url={{ mysqlConnectorUrl }}
