@@ -34,6 +34,8 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
+  - ls -al /tmp
+
   - sudo service jira start
 
   - curl http://localhost:8080
