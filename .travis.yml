@@ -32,3 +32,5 @@ script:
   - sudo tail -200 /opt/atlassian/jira/logs/catalina.out
 
   - sudo netstat -plnt
+
+  - sudo curl http://localhost:8080

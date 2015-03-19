@@ -41,11 +41,11 @@
 
 - name: stop jira
   service: name=jira
-           status=stopped
+           state=stopped
   sudo: yes
 
 - name: start jira
   service: name=jira
-           status=started
+           state=started
   sudo: yes
 
