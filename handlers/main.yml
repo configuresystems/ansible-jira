@@ -1,0 +1,13 @@
+---
+
+- name: restart jira
+  service: name=jira
+           state=restarted
+
+- name: start jira
+  service: name=jira
+           state=started
+
+- name: stop jira
+  service: name=jira
+           state=stopped
