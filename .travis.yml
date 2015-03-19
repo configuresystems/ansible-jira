@@ -26,15 +26,5 @@ script:
   - ansible-playbook -i tests/inventory/test tests/$SITE --syntax-check
 
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo -vvv
-
-  - curl -q http://localhost:8080
-
-  - curl -v http://localhost:8080
-
-  # Debugging
-
-  - sudo tail -200 /opt/atlassian/jira/logs/catalina.out
-
-  - sudo netstat -plnt
+  - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo
 
