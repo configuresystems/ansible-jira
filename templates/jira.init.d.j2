@@ -19,8 +19,9 @@ case "$1" in
     restart)
         ./stop-jira.sh
         ./start-jira.sh
+        ;;
     *)
-        echo "Usage: $0 {start|stop}"
+        echo "Usage: $0 {start|restart|stop}"
         exit 1
         ;;
 esac
