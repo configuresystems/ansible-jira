@@ -34,7 +34,4 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  -> curl http://localhost:8080
-    #| grep -q 'KIBANA_VERSION'
-    #&& (echo 'Kibana is accessible: pass' && exit 0)
-    #|| (echo 'Kibana is accessible: fail' && exit 1)
+  - curl http://localhost:8080
