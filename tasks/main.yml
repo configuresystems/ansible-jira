@@ -1,0 +1,18 @@
+---
+
+- name: Download Jira
+  get_url: url={{ jiraDownload }}
+           dest=/tmp
+
+- name: Set Perms on Jira File
+  file: path=/tmp/
+        owner=root
+        group=root
+        mode=0777  
+ 
+- name: Copy Jira Template
+  template: src=response.varfile.j2
+            dest=/tmp/response.varfile
+
+- name: Install Jira
+  raw: /tmp/{{ jiraExec }} -q -varfile /tmp/response.varfile
