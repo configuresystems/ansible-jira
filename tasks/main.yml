@@ -43,7 +43,7 @@
   raw: /etc/init.d/jira stop
   sudo: yes
 
-- name: simulate long running op (15 sec), wait for up to 45 sec, poll every 5 sec
+- name: simulate long running op (30 sec), wait for up to 75 sec, poll every 5 sec
   command: /bin/sleep 30
   async: 75
   poll: 5
