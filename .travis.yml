@@ -8,7 +8,6 @@ env:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y curl python-pip python-apt gcc
-  - sudo netstat -plnt
 
 install:
   # Install Ansible 1.8.4 per these tests.
@@ -21,3 +20,20 @@ script:
 
   # Run the role/playbook with ansible-playbook.
   - ansible-playbook -i tests/inventory/test tests/$SITE --connection=local --sudo
+
+  # Allow time for Jira to start
+  - sleep 30
+
+  # Ensure Jira is accessible via HTTP
+  - >
+    curl -Is http://localhost:8080/
+    | grep -q "HTTP/1.1 302 Found"
+    && (echo 'Jira is accessible: pass' && exit 0)
+    || (echo 'Jira is accessible: fail' && exit 1)
+
+  # Ensure Stash is on 8080
+  - >
+    sudo netstat -8080
+    | grep -q 8080
+    && (echo 'Jira is running: pass' && exit 0)
+    || (echo 'Jira is running: fail' && exit 1)
