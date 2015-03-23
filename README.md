@@ -35,6 +35,10 @@ ansible-playbook -i path/to/inventory ansible-jira.yml
   - [4.1 Playbook Arguments](#41-playbook-arguments)
   - [4.2 Not Currently in Use](#41-not-currently-in-use)
 - [5. After Install](#5-after-install)
+- [6. Jira Control](#6-jira-control)
+  - [6.1 Stop](#61-stop)
+  - [6.2 Start](#62-start)
+  - [6.3 Restart](#63-restart)
 
 
 ## 2. Overview
@@ -102,3 +106,23 @@ http://your.ip.address.yes:{{ jiraHttp }}
 
 Finish up the install process by adding the database info and
 product key probvided by Atlassian.
+
+### 6. Jira Control
+
+#### 6.1 Stop
+
+```bash
+service jira stop
+```
+
+#### 6.2 Start
+
+```bash
+service jira start
+```
+
+#### 6.3 Restart
+
+```bash
+service jira restart
+```
