@@ -33,7 +33,7 @@ script:
 
   # Ensure Stash is on 8080
   - >
-    sudo netstat -8080
+    sudo netstat -plnt
     | grep -q 8080
     && (echo 'Jira is running: pass' && exit 0)
     || (echo 'Jira is running: fail' && exit 1)
